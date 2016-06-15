@@ -1,0 +1,247 @@
+g++-4.9 -g -O0 -std=c++11 -o main main.cpp  ../../libmda/lib/libmda.a
+valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./main
+==4058== Memcheck, a memory error detector
+==4058== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==4058== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==4058== Command: ./main
+==4058== 
+(5.25602e-01,5.25602e-01,5.25602e-01)
+(5.25602e-01,5.25602e-01,5.25602e-01)
+==4058== Invalid read of size 8
+==4058==    at 0x4035B8: neural_network_2::unit_dot(int, int, std::vector<double, std::allocator<double> > const&) const (neural_network_2.h:72)
+==4058==    by 0x403677: neural_network_2::unit_evaluate(int, int, std::vector<double, std::allocator<double> > const&) const (neural_network_2.h:109)
+==4058==    by 0x4039A3: neural_network_2::error_derivative(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:160)
+==4058==    by 0x4042F0: neural_network_2::optimize(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:282)
+==4058==    by 0x402618: main (main.cpp:37)
+==4058==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==4058== 
+==4058== 
+==4058== Process terminating with default action of signal 11 (SIGSEGV)
+==4058==  Access not within mapped region at address 0x0
+==4058==    at 0x4035B8: neural_network_2::unit_dot(int, int, std::vector<double, std::allocator<double> > const&) const (neural_network_2.h:72)
+==4058==    by 0x403677: neural_network_2::unit_evaluate(int, int, std::vector<double, std::allocator<double> > const&) const (neural_network_2.h:109)
+==4058==    by 0x4039A3: neural_network_2::error_derivative(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:160)
+==4058==    by 0x4042F0: neural_network_2::optimize(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:282)
+==4058==    by 0x402618: main (main.cpp:37)
+==4058==  If you believe this happened as a result of a stack
+==4058==  overflow in your program's main thread (unlikely but
+==4058==  possible), you can try to increase the size of the
+==4058==  main thread stack using the --main-stacksize= flag.
+==4058==  The main thread stack size used in this run was 16777216.
+==4058== 
+==4058== HEAP SUMMARY:
+==4058==     in use at exit: 73,908 bytes in 25 blocks
+==4058==   total heap usage: 45 allocs, 20 frees, 74,528 bytes allocated
+==4058== 
+==4058== 12 bytes in 1 blocks are still reachable in loss record 1 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x40A0D9: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x409610: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x408877: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x408052: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x406A70: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (stl_vector.h:136)
+==4058==    by 0x40533C: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (stl_vector.h:320)
+==4058==    by 0x403F0B: neural_network_2::neural_network_2(std::vector<int, std::allocator<int> > const&) (neural_network_2.h:214)
+==4058==    by 0x4022FD: main (main.cpp:31)
+==4058== 
+==4058== 16 bytes in 1 blocks are still reachable in loss record 2 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407622: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405B2E: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:136)
+==4058==    by 0x4044B1: std::vector<double, std::allocator<double> >::vector(unsigned long, std::allocator<double> const&) (stl_vector.h:278)
+==4058==    by 0x408E10: _ZN9__gnu_cxx13new_allocatorISt6vectorIdSaIdEEE9constructIS3_IRiEEEvPT_DpOT0_ (in /home/banan/programming/machine_learning/backpropagation/main)
+==4058==    by 0x407DFB: _ZNSt16allocator_traitsISaISt6vectorIdSaIdEEEE12_S_constructIS2_IRiEEENSt9enable_ifIXsrSt6__and_IINS4_18__construct_helperIT_IDpT0_EE4typeEEE5valueEvE4typeERS3_PSA_DpOSB_ (alloc_traits.h:253)
+==4058==    by 0x406580: _ZNSt16allocator_traitsISaISt6vectorIdSaIdEEEE9constructIS2_IRiEEEDTcl12_S_constructfp_fp0_spcl7forwardIT0_Efp1_EEERS3_PT_DpOS7_ (alloc_traits.h:399)
+==4058==    by 0x404F5A: void std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::emplace_back<int&>(int&) (vector.tcc:96)
+==4058==    by 0x40392F: neural_network_2::error_derivative(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:157)
+==4058== 
+==4058== 24 bytes in 1 blocks are still reachable in loss record 3 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407303: void std::vector<double, std::allocator<double> >::_M_range_initialize<double const*>(double const*, double const*, std::forward_iterator_tag) (stl_vector.h:1287)
+==4058==    by 0x405804: std::vector<double, std::allocator<double> >::vector(std::initializer_list<double>, std::allocator<double> const&) (stl_vector.h:377)
+==4058==    by 0x40237B: main (main.cpp:32)
+==4058== 
+==4058== 24 bytes in 1 blocks are still reachable in loss record 4 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407233: double* std::vector<double, std::allocator<double> >::_M_allocate_and_copy<std::move_iterator<double*> >(unsigned long, std::move_iterator<double*>, std::move_iterator<double*>) (stl_vector.h:1224)
+==4058==    by 0x405694: std::vector<double, std::allocator<double> >::reserve(unsigned long) (vector.tcc:75)
+==4058==    by 0x4041AA: neural_network_2::evaluate(std::vector<double, std::allocator<double> >) (neural_network_2.h:255)
+==4058==    by 0x40387F: neural_network_2::error_derivative(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:147)
+==4058==    by 0x4042F0: neural_network_2::optimize(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:282)
+==4058==    by 0x402618: main (main.cpp:37)
+==4058== 
+==4058== 24 bytes in 1 blocks are still reachable in loss record 5 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407622: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405B2E: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:136)
+==4058==    by 0x404C72: std::vector<double, std::allocator<double> >::vector(std::vector<double, std::allocator<double> > const&) (stl_vector.h:320)
+==4058==    by 0x408CBD: _ZN9__gnu_cxx13new_allocatorISt6vectorIdSaIdEEE9constructIS3_IRKS3_EEEvPT_DpOT0_ (in /home/banan/programming/machine_learning/backpropagation/main)
+==4058==    by 0x407C15: _ZNSt16allocator_traitsISaISt6vectorIdSaIdEEEE12_S_constructIS2_IRKS2_EEENSt9enable_ifIXsrSt6__and_IINS4_18__construct_helperIT_IDpT0_EE4typeEEE5valueEvE4typeERS3_PSB_DpOSC_ (alloc_traits.h:253)
+==4058==    by 0x40632E: _ZNSt16allocator_traitsISaISt6vectorIdSaIdEEEE9constructIS2_IRKS2_EEEDTcl12_S_constructfp_fp0_spcl7forwardIT0_Efp1_EEERS3_PT_DpOS8_ (alloc_traits.h:399)
+==4058==    by 0x4063C3: void std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::_M_emplace_back_aux<std::vector<double, std::allocator<double> > const&>(std::vector<double, std::allocator<double> > const&) (vector.tcc:416)
+==4058==    by 0x404EDE: void std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::emplace_back<std::vector<double, std::allocator<double> > const&>(std::vector<double, std::allocator<double> > const&) (vector.tcc:101)
+==4058== 
+==4058== 48 bytes in 1 blocks are still reachable in loss record 6 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x409FDE: __gnu_cxx::new_allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x409554: std::allocator_traits<std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::allocate(std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x4087AF: std::_Vector_base<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x40744D: void std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::_M_range_initialize<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::forward_iterator_tag) (stl_vector.h:1287)
+==4058==    by 0x405934: std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::vector(std::initializer_list<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > const&) (stl_vector.h:377)
+==4058==    by 0x4021FF: main (main.cpp:28)
+==4058== 
+==4058== 48 bytes in 1 blocks are still reachable in loss record 7 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x409FDE: __gnu_cxx::new_allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x409554: std::allocator_traits<std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::allocate(std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x4087AF: std::_Vector_base<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x40744D: void std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::_M_range_initialize<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::forward_iterator_tag) (stl_vector.h:1287)
+==4058==    by 0x405934: std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > >::vector(std::initializer_list<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > const&) (stl_vector.h:377)
+==4058==    by 0x402592: main (main.cpp:36)
+==4058== 
+==4058== 48 bytes in 2 blocks are still reachable in loss record 8 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x409DC3: __gnu_cxx::new_allocator<std::pair<int, int> >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x409327: std::allocator_traits<std::allocator<std::pair<int, int> > >::allocate(std::allocator<std::pair<int, int> >&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x4084DB: std::_Vector_base<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407001: void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_emplace_back_aux<int&, int&>(int&, int&) (vector.tcc:412)
+==4058==    by 0x4055F8: void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::emplace_back<int&, int&>(int&, int&) (vector.tcc:101)
+==4058==    by 0x4040D3: neural_network_2::neural_network_2(std::vector<int, std::allocator<int> > const&) (neural_network_2.h:241)
+==4058==    by 0x4022FD: main (main.cpp:31)
+==4058== 
+==4058== 72 bytes in 1 blocks are still reachable in loss record 9 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x409D08: __gnu_cxx::new_allocator<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x4091DF: std::allocator_traits<std::allocator<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > > >::allocate(std::allocator<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x408339: std::_Vector_base<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >, std::allocator<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x406DAA: std::vector<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >, std::allocator<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > > >::_M_default_append(unsigned long) (vector.tcc:557)
+==4058==    by 0x4054E2: std::vector<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >, std::allocator<std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > > >::resize(unsigned long) (stl_vector.h:676)
+==4058==    by 0x404065: neural_network_2::neural_network_2(std::vector<int, std::allocator<int> > const&) (neural_network_2.h:233)
+==4058==    by 0x4022FD: main (main.cpp:31)
+==4058== 
+==4058== 80 bytes in 1 blocks are still reachable in loss record 10 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x40A1B3: __gnu_cxx::new_allocator<sigmoid>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x4096AB: std::allocator_traits<std::allocator<sigmoid> >::allocate(std::allocator<sigmoid>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x408939: std::_Vector_base<sigmoid, std::allocator<sigmoid> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407710: std::_Vector_base<sigmoid, std::allocator<sigmoid> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405CB4: std::_Vector_base<sigmoid, std::allocator<sigmoid> >::_Vector_base(unsigned long, std::allocator<sigmoid> const&) (stl_vector.h:136)
+==4058==    by 0x40474B: std::vector<sigmoid, std::allocator<sigmoid> >::vector(unsigned long, sigmoid const&, std::allocator<sigmoid> const&) (stl_vector.h:291)
+==4058==    by 0x403090: neural_network::neural_network(int, int, int) (neural_network.h:27)
+==4058==    by 0x402287: main (main.cpp:30)
+==4058== 
+==4058== 88 bytes in 2 blocks are still reachable in loss record 11 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407622: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405B2E: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:136)
+==4058==    by 0x404C72: std::vector<double, std::allocator<double> >::vector(std::vector<double, std::allocator<double> > const&) (stl_vector.h:320)
+==4058==    by 0x40A6F9: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >::pair(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const&) (stl_pair.h:127)
+==4058==    by 0x40A77F: void std::_Construct<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const&>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const&) (in /home/banan/programming/machine_learning/backpropagation/main)
+==4058==    by 0x40A01D: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >* std::__uninitialized_copy<false>::__uninit_copy<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*) (stl_uninitialized.h:75)
+==4058==    by 0x409585: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >* std::uninitialized_copy<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*) (stl_uninitialized.h:125)
+==4058==    by 0x4087E7: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >* std::__uninitialized_copy_a<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >&) (stl_uninitialized.h:278)
+==4058== 
+==4058== 88 bytes in 2 blocks are still reachable in loss record 12 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407622: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405B2E: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:136)
+==4058==    by 0x404C72: std::vector<double, std::allocator<double> >::vector(std::vector<double, std::allocator<double> > const&) (stl_vector.h:320)
+==4058==    by 0x40A714: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >::pair(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const&) (stl_pair.h:127)
+==4058==    by 0x40A77F: void std::_Construct<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const&>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const&) (in /home/banan/programming/machine_learning/backpropagation/main)
+==4058==    by 0x40A01D: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >* std::__uninitialized_copy<false>::__uninit_copy<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*) (stl_uninitialized.h:75)
+==4058==    by 0x409585: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >* std::uninitialized_copy<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*>(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*) (stl_uninitialized.h:125)
+==4058==    by 0x4087E7: std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >* std::__uninitialized_copy_a<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >(std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > const*, std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >*, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > >&) (stl_uninitialized.h:278)
+==4058== 
+==4058== 96 bytes in 5 blocks are still reachable in loss record 13 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407622: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405B2E: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:136)
+==4058==    by 0x404C72: std::vector<double, std::allocator<double> >::vector(std::vector<double, std::allocator<double> > const&) (stl_vector.h:320)
+==4058==    by 0x40A1F9: neuron::neuron(neuron const&) (neuron.h:44)
+==4058==    by 0x40A22E: sigmoid::sigmoid(sigmoid const&) (neuron.h:169)
+==4058==    by 0x40A283: _ZSt10_ConstructI7sigmoidIRKS0_EEvPT_DpOT0_ (in /home/banan/programming/machine_learning/backpropagation/main)
+==4058==    by 0x40970C: void std::__uninitialized_fill_n<false>::__uninit_fill_n<sigmoid*, unsigned long, sigmoid>(sigmoid*, unsigned long, sigmoid const&) (stl_uninitialized.h:201)
+==4058==    by 0x40899E: void std::uninitialized_fill_n<sigmoid*, unsigned long, sigmoid>(sigmoid*, unsigned long, sigmoid const&) (stl_uninitialized.h:243)
+==4058== 
+==4058== 120 bytes in 1 blocks are still reachable in loss record 14 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x40A1B3: __gnu_cxx::new_allocator<sigmoid>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x4096AB: std::allocator_traits<std::allocator<sigmoid> >::allocate(std::allocator<sigmoid>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x408939: std::_Vector_base<sigmoid, std::allocator<sigmoid> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407710: std::_Vector_base<sigmoid, std::allocator<sigmoid> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405CB4: std::_Vector_base<sigmoid, std::allocator<sigmoid> >::_Vector_base(unsigned long, std::allocator<sigmoid> const&) (stl_vector.h:136)
+==4058==    by 0x40474B: std::vector<sigmoid, std::allocator<sigmoid> >::vector(unsigned long, sigmoid const&, std::allocator<sigmoid> const&) (stl_vector.h:291)
+==4058==    by 0x40303E: neural_network::neural_network(int, int, int) (neural_network.h:27)
+==4058==    by 0x402287: main (main.cpp:30)
+==4058== 
+==4058== 136 bytes in 1 blocks are still reachable in loss record 15 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x405ED9: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (vector.tcc:557)
+==4058==    by 0x404B50: std::vector<double, std::allocator<double> >::resize(unsigned long) (stl_vector.h:676)
+==4058==    by 0x403FE0: neural_network_2::neural_network_2(std::vector<int, std::allocator<int> > const&) (neural_network_2.h:225)
+==4058==    by 0x4022FD: main (main.cpp:31)
+==4058== 
+==4058== 136 bytes in 1 blocks are still reachable in loss record 16 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4097C1: __gnu_cxx::new_allocator<double>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408A89: std::allocator_traits<std::allocator<double> >::allocate(std::allocator<double>&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x40797F: std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x407622: std::_Vector_base<double, std::allocator<double> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+==4058==    by 0x405B2E: std::_Vector_base<double, std::allocator<double> >::_Vector_base(unsigned long, std::allocator<double> const&) (stl_vector.h:136)
+==4058==    by 0x404D3D: std::vector<double, std::allocator<double> >::vector(unsigned long, double const&, std::allocator<double> const&) (stl_vector.h:291)
+==4058==    by 0x4037F5: neural_network_2::error_derivative(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:140)
+==4058==    by 0x4042F0: neural_network_2::optimize(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:282)
+==4058==    by 0x402618: main (main.cpp:37)
+==4058== 
+==4058== 144 bytes in 1 blocks are still reachable in loss record 17 of 18
+==4058==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4099C8: __gnu_cxx::new_allocator<std::vector<double, std::allocator<double> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==4058==    by 0x408D2F: std::allocator_traits<std::allocator<std::vector<double, std::allocator<double> > > >::allocate(std::allocator<std::vector<double, std::allocator<double> > >&, unsigned long) (alloc_traits.h:357)
+==4058==    by 0x407D0B: std::_Vector_base<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+==4058==    by 0x40636F: void std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::_M_emplace_back_aux<std::vector<double, std::allocator<double> > const&>(std::vector<double, std::allocator<double> > const&) (vector.tcc:412)
+==4058==    by 0x404EDE: void std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::emplace_back<std::vector<double, std::allocator<double> > const&>(std::vector<double, std::allocator<double> > const&) (vector.tcc:101)
+==4058==    by 0x4038F3: neural_network_2::error_derivative(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:154)
+==4058==    by 0x4042F0: neural_network_2::optimize(std::vector<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > >, std::allocator<std::pair<std::vector<double, std::allocator<double> >, std::vector<double, std::allocator<double> > > > > const&) (neural_network_2.h:282)
+==4058==    by 0x402618: main (main.cpp:37)
+==4058== 
+==4058== 72,704 bytes in 1 blocks are still reachable in loss record 18 of 18
+==4058==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4058==    by 0x4EC126F: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==4058==    by 0x4010139: call_init.part.0 (dl-init.c:78)
+==4058==    by 0x4010222: _dl_init (dl-init.c:36)
+==4058==    by 0x4001309: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+==4058== 
+==4058== LEAK SUMMARY:
+==4058==    definitely lost: 0 bytes in 0 blocks
+==4058==    indirectly lost: 0 bytes in 0 blocks
+==4058==      possibly lost: 0 bytes in 0 blocks
+==4058==    still reachable: 73,908 bytes in 25 blocks
+==4058==         suppressed: 0 bytes in 0 blocks
+==4058== 
+==4058== For counts of detected and suppressed errors, rerun with: -v
+==4058== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+make: *** [gcc_debug] Segmentation fault (core dumped)
